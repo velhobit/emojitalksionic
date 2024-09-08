@@ -1,0 +1,31 @@
+<ion-header [translucent]="true" mode="ios">
+  <ion-toolbar>
+    <ion-title>Feed</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" mode="ios">
+  <ion-grid fixed="true" class="feed">
+    <ion-row>
+      <ion-col>
+        <h2 class="ion-no-margin ion-padding-start ion-padding-end">Meu Feed</h2>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let post of feed">
+      <ion-col>
+        <ion-card mode="md">
+          <ion-card-header>
+            <ion-card-title>{{post.forum.forum_emojis[0].emoji}} {{post.title}}</ion-card-title>
+            <ion-card-subtitle>{{post.time_since_posted}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-list>
+            <ion-item>
+              por {{post.author.name}}
+            </ion-item>
+          </ion-list>
+          <ion-card-content [innerHTML]="post.content"></ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

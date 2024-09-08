@@ -11,9 +11,11 @@
         <h2 *ngIf="emoji == 'happy'">🙂</h2>
         <h2 *ngIf="emoji == 'blink'">😉</h2>
         <h2 *ngIf="emoji == 'secret'">🤫</h2>
+        <h2 *ngIf="emoji == 'welcome'">😃</h2>
+        <h1 *ngIf="emoji == 'welcome'">Bem-Vindo de volta!</h1>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row *ngIf="emoji !== 'welcome'">
       <ion-col size="12">
         <ion-input [(ngModel)]="username" mode="md" fill="outline" shape="round" placeholder="nome de usuário ou e-mail" (ionFocus)="emoji='blink'" (ionBlur)="emoji='happy'"></ion-input>
       </ion-col>
@@ -21,7 +23,7 @@
         <ion-input [(ngModel)]="password" type="password" mode="md" fill="outline" shape="round" placeholder="senha" (ionFocus)="emoji='secret'" (ionBlur)="emoji='happy'"></ion-input>
       </ion-col>
       <ion-col size="12">
-        <ion-button shape="round" size="block">Entrar</ion-button>
+        <ion-button shape="round" size="block" (click)="login()">Entrar</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

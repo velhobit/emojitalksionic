@@ -7,19 +7,24 @@ export const routes: Routes = [
     component: TabsPage,
     children: [
       {
+        path: 'feed',
+        loadComponent: () =>
+          import('../pages/feed/feed.page').then(m => m.FeedPage),
+      },
+      {
         path: 'forums',
         loadComponent: () =>
           import('../pages/forums/forums.page').then(m => m.ForumsPage),
       },
       {
         path: '',
-        redirectTo: '', // ou outra rota padrão
+        redirectTo: 'feed', // ou outra rota padrão
         pathMatch: 'full',
       },
     ],
   },
   {
-    path: '',
+    path: 'feed',
     redirectTo: '', // ou outra rota inicial válida
     pathMatch: 'full',
   },

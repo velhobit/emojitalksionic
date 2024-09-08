@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonButton, IonCol, IonContent, IonGrid, IonHeader, IonInput, IonRow, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { AlertController, IonButton, IonCol, IonContent, IonGrid, IonHeader, IonInput, IonRow, IonTitle, IonToolbar, ModalController } from '@ionic/angular/standalone';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,12 +12,37 @@ import { IonButton, IonCol, IonContent, IonGrid, IonHeader, IonInput, IonRow, Io
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonRow, IonCol, IonGrid, IonInput, IonButton]
 })
 export class LoginPage implements OnInit {
-  emoji:string = "happy";
+  emoji: string = "happy";
   username: string = "";
   password: string = "";
-  constructor() { }
+  constructor(private authService: AuthService, private alertController: AlertController, private modalController: ModalController) {
+
+  }
 
   ngOnInit() {
+  }
+
+  login() {
+    this.authService.login(this.username, this.password).subscribe(
+      data => {
+        //console.log(data);
+        this.emoji = "welcome";
+        setInterval(() => {
+          this.modalController.dismiss();
+        },1000);
+      },
+      async error => {
+        //console.error('Login failed', error);
+        let errorAlert = await this.alertController.create({
+          mode: "ios",
+          header: "😓",
+          subHeader: "Nome de usuáro ou senha errado",
+          message: "Por favor verifique se seu nome de usuário e senha foi digitado corretamente.",
+          buttons: ["OK"]
+        });
+        errorAlert.present();
+      }
+    );
   }
 
 }
