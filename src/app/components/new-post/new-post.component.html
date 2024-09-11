@@ -1,0 +1,29 @@
+<ion-content>
+  <ion-grid class="ion-padding">
+    <ion-row>
+      <ion-col class="ion-no-padding ion-no-margin">
+        <ion-segment [(ngModel)]="selectedEditor" value="default" mode="ios">
+          <ion-segment-button value="default" (click)="convertMarkdownToHtml()">
+            <ion-label>Editor Visual</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="markdown" (click)="convertHtmlToMarkdown()">
+            <ion-label>Markdown</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+        <div class="segments ion-margin-top ion-margin-bottom">
+          <div [ngClass]="{ 'hidden': selectedEditor !== 'default' }">
+            <!-- Editor Quill -->
+            <div class="editor" id="editor" #editor></div>
+          </div>
+          <div *ngIf="selectedEditor == 'markdown'">
+            <ion-textarea [(ngModel)]="markdownContent" class="default-editor" labelPlacement="floating" mode="ios" fill="outline" placeholder="Compartilhe suas perguntas, dúvidas, curiosidades ou apenas algo que gostaria de discutir."></ion-textarea>
+          </div>
+        </div>
+        <ion-item lines="none" class="ion-no-padding ion-no-margin">
+          <ion-button fill="clear" color="warning" mode="md" slot="start" (click)="cancel()">Cancelar</ion-button>
+          <ion-button mode="md" size="medium" slot="end">Publicar</ion-button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

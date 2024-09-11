@@ -12,6 +12,11 @@ export const routes: Routes = [
           import('../pages/feed/feed.page').then(m => m.FeedPage),
       },
       {
+        path: 'post/:uuid',
+        loadComponent: () =>
+          import('../pages/post/post.page').then(m => m.PostPage),
+      },
+      {
         path: 'forums',
         loadComponent: () =>
           import('../pages/forums/forums.page').then(m => m.ForumsPage),

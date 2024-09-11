@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-interface Post {
-  uuid?: string;
+export interface Post {
+  uuid: string;
   title: string;
   content: string;
   forum_id: string;
@@ -12,6 +12,9 @@ interface Post {
   closure_date?: string;
   deletion_date?: string;
   last_update_date?: string;
+  time_since_posted?: string;
+  forum?: any;
+  author?: any;
 }
 
 @Injectable({

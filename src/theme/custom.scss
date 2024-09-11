@@ -1,0 +1,106 @@
+/*global*/
+.hidden{
+  display: none;
+}
+
+ion-card{
+  box-shadow: 0 .2rem 2em rgba(0,0,0,.1), 0 .2rem .2rem rgba(0,0,0,.1);
+  border-radius: 1.3em;
+  transition: all .3s;
+
+  &:hover{
+    box-shadow: 0 .2rem 2.4em rgba(0,0,0,.1), 0 .2rem .6rem rgba(0,0,0,.1);
+    transform: scale(1.01);
+  }
+
+  &.card-feed{
+    .card-author{
+      ion-label{
+        font-size: .85rem;
+      }
+      ion-avatar{
+        width: 2em;
+        height: 2em;
+      }
+    }
+    ion-card-header{
+      ion-card-title{
+        font-size: 1.3rem;
+        font-weight: bold;
+      }
+    }
+    ion-card-content{
+      color: var(--ion-color-dark);
+
+      h1,h2,h3,h4,h5,h6{
+        font-size: 1.1em;
+        font-weight: bold;
+      }
+
+      pre{
+        font-size: .9em;
+        background-color:  var(--ion-color-light);
+        padding: .3em;
+        border-radius: .5em;
+      }
+      blockquote{
+        border-left: 2px solid var(--ion-color-primary-tint);
+        margin-left: 0;
+        padding-left: 1em;
+        font-family: ui-serif, serif;
+        font-style: italic;
+        color: var(--ion-color-primary-tint);
+        font-size: 1.5em;
+      }
+      table{
+        width: 100%;
+        margin: .5em 0;
+        thead{
+          text-align: left;
+        }
+        td,th{
+          border: 1px solid var(--ion-color-light);
+          padding: 0 .2em;
+        }
+        th{
+          border-bottom: 1px solid var(--ion-color-dark);
+        }
+      }
+
+      img, video{
+        border-radius: 3px;
+        max-width: 100%;
+        height: auto;
+      }
+    }
+
+    &.no-card{
+      --background: transparent;
+      ion-list{
+        --background: transparent;
+        background: transparent;
+        ion-item{
+          --background: transparent;
+        }
+      }
+      box-shadow: none;
+      &:hover{
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+/* Estilos aplicados apenas para tablets e desktops */
+@media (min-width: 768px) {
+  ion-modal.new-post {
+    --height: 300px;
+    --border-radius: 16px;
+    --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+
+  ion-modal.new-post::part(backdrop) {
+    background: rgba(209, 213, 219);
+    opacity: 1;
+  }
+}
