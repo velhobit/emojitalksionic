@@ -1,6 +1,11 @@
 <ion-content>
   <ion-grid class="ion-padding">
     <ion-row>
+      <ion-col>
+        <h1 class="ion-no-margin">{{emoji}} {{forum.name}}</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
       <ion-col class="ion-no-padding ion-no-margin">
         <ion-segment [(ngModel)]="selectedEditor" value="default" mode="ios">
           <ion-segment-button value="default" (click)="convertMarkdownToHtml()">
@@ -20,8 +25,8 @@
           </div>
         </div>
         <ion-item lines="none" class="ion-no-padding ion-no-margin">
-          <ion-button fill="clear" color="warning" mode="md" slot="start" (click)="cancel()">Cancelar</ion-button>
-          <ion-button mode="md" size="medium" slot="end">Publicar</ion-button>
+          <ion-button fill="clear" size="medium" color="danger" mode="md" slot="start" (click)="cancel()">Cancelar</ion-button>
+          <ion-button mode="md" fill="outline" size="medium" slot="end">Publicar</ion-button>
         </ion-item>
       </ion-col>
     </ion-row>

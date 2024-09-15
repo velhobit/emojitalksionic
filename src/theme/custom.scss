@@ -2,6 +2,10 @@
 .hidden{
   display: none;
 }
+.feed{
+  max-width: 560px;
+}
+
 
 ion-card{
   box-shadow: 0 .2rem 2em rgba(0,0,0,.1), 0 .2rem .2rem rgba(0,0,0,.1);
@@ -94,7 +98,7 @@ ion-card{
 /* Estilos aplicados apenas para tablets e desktops */
 @media (min-width: 768px) {
   ion-modal.new-post {
-    --height: 300px;
+    --height: 325px;
     --border-radius: 16px;
     --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   }

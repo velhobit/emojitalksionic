@@ -5,6 +5,8 @@ import { IonButton, IonCol, IonContent, IonGrid, IonItem, IonLabel, IonRow, IonS
 import Quill from 'quill';
 import * as marked from 'marked';
 import TurndownService from 'turndown';
+import { GlobalService } from 'src/app/services/global.service';
+import { SelectForumComponent } from '../select-forum/select-forum.component';
 //Extends Quill
 
 
@@ -18,17 +20,23 @@ import TurndownService from 'turndown';
 export class NewPostComponent implements OnInit {
   @ViewChild('editor', { static: false }) editorElement?: ElementRef;
   quill: any;
+  forum: any;
+  emoji: string = "";
   content: string = "";
   markdownContent: string = "";
   selectedEditor?: string = "default";
   turndownService = new TurndownService();
-  constructor(private modalController: ModalController) { }
+  constructor(private modalCtrl: ModalController, private globalSerivce: GlobalService) { }
 
-  ngOnInit() {
-
+  async ngOnInit() {
+    this.forum = await this.globalSerivce.getForum();
+    this.emoji = await this.globalSerivce.getEmoji();
+    if (!this.forum || !this.emoji?.length) {
+      this.openSelectForum();
+    }
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.initializeQuill();
   }
 
@@ -52,6 +60,25 @@ export class NewPostComponent implements OnInit {
     });
   }
 
+  async openSelectForum() {
+    const modal = await this.modalCtrl.create({
+      component: SelectForumComponent,
+      cssClass: 'select-forum',
+      mode: 'ios',
+      backdropDismiss: false,
+    });
+
+    await modal.present();
+
+    const { data } = await modal.onDidDismiss();
+    this.upgradeInfo(data);
+  }
+
+  upgradeInfo(data: any) {
+    this.forum = this.globalSerivce.getForum();
+    this.emoji = this.globalSerivce.getEmoji();
+  }
+
   convertMarkdownToHtml() {
     if (this.quill) {  // Verifique se o Quill foi inicializado
       this.quill.root.innerHTML = marked.parse(this.markdownContent);
@@ -65,7 +92,7 @@ export class NewPostComponent implements OnInit {
     this.markdownContent = this.turndownService.turndown(this.content);
   }
 
-  cancel(){
-    this.modalController.dismiss();
+  cancel() {
+    this.modalCtrl.dismiss();
   }
 }

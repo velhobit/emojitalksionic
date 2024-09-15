@@ -1,15 +1,10 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" mode="ios">
   <ion-toolbar>
-    <ion-title>post</ion-title>
+    <ion-title>{{post?.title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">post</ion-title>
-    </ion-toolbar>
-  </ion-header>
   <ion-grid fixed="true" class="feed">
     <ion-row>
       <ion-col>

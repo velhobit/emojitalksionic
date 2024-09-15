@@ -45,10 +45,12 @@ ion-item{
   }
 }
 @media (min-width: 768px) {
-  ion-textarea{
-    min-height: 129px;
-  }
-  .editor{
-    height: 100px;
+  .segments{
+    ion-textarea{
+      min-height: 129px;
+    }
+    .editor{
+      height: 100px;
+    }
   }
 }

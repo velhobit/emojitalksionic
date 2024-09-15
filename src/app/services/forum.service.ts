@@ -20,6 +20,14 @@ export class ForumService {
     );
   }
 
+  // Obtém posts de um forum pelo alias
+  getPosts(alias:string): Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/${alias}/posts`).pipe(
+      map(response => response),  // Manipule a resposta conforme necessário
+      catchError(this.handleError<any>('getPosts', []))  // Tratamento de erros
+    );
+  }
+
   // Obtém um fórum específico pelo ID
   getForumById(id: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`).pipe(
@@ -55,4 +63,5 @@ export class ForumService {
       return of(result as T);
     };
   }
+
 }

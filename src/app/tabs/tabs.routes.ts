@@ -22,6 +22,11 @@ export const routes: Routes = [
           import('../pages/forums/forums.page').then(m => m.ForumsPage),
       },
       {
+        path: ':alias',
+        loadComponent: () =>
+          import('../pages/forum/forum.page').then(m => m.ForumPage),
+      },
+      {
         path: '',
         redirectTo: 'feed', // ou outra rota padrão
         pathMatch: 'full',
