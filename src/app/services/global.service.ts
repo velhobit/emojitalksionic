@@ -12,12 +12,10 @@ export class GlobalService {
 
   getForum(): any {
     let forum: any = sessionStorage.getItem(this.storageAlias + "forum");
-    if (forum && forum.length) {
-      forum = JSON.parse(forum);
-    } else {
-      forum = false;
+    if (forum == undefined || forum?.length) {
+      return false;
     }
-    return forum;
+    return JSON.parse(forum);;
   }
   setForum(forum: any) {
     this.forum = forum;

@@ -9,10 +9,10 @@ ion-item{
     padding: .85em;
     padding-top: 0;
     font-family: monospace;
-    min-height: calc(80vh + 29px);
+    min-height: calc(75vh + 29px);
   }
   .editor{
-    height: 80vh;
+    height: 75vh;
   }
   ::ng-deep{
     .ql-toolbar{

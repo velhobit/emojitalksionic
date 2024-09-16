@@ -20,7 +20,7 @@ import { SelectForumComponent } from '../select-forum/select-forum.component';
 export class NewPostComponent implements OnInit {
   @ViewChild('editor', { static: false }) editorElement?: ElementRef;
   quill: any;
-  forum: any;
+  forum: any = false;
   emoji: string = "";
   content: string = "";
   markdownContent: string = "";
