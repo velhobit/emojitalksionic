@@ -1,7 +1,7 @@
 import { Component, EnvironmentInjector, inject } from '@angular/core';
 import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonModal, ModalController, IonHeader, IonToolbar, IonTitle } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { add, glasses, cog, compass } from 'ionicons/icons';
+import { disc, add, glasses, cog, compass, personCircle } from 'ionicons/icons';
 import { LoginPage } from '../pages/login/login.page';
 import { AuthService } from '../services/auth.service';
 import { NewPostComponent } from '../components/new-post/new-post.component';
@@ -17,7 +17,7 @@ export class TabsPage {
   public environmentInjector = inject(EnvironmentInjector);
 
   constructor(private modalController: ModalController, private authService: AuthService) {
-    addIcons({ compass, glasses, cog, add});
+    addIcons({ compass, glasses, cog, add, disc, personCircle});
   }
 
   async ngOnInit() {
