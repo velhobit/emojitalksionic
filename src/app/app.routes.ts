@@ -9,16 +9,4 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage)
   },
-  {
-    path: 'feed',
-    loadComponent: () => import('./pages/feed/feed.page').then( m => m.FeedPage)
-  },
-  {
-    path: 'post',
-    loadComponent: () => import('./pages/post/post.page').then( m => m.PostPage)
-  },
-  {
-    path: 'forum',
-    loadComponent: () => import('./pages/forum/forum.page').then( m => m.ForumPage)
-  },
 ];

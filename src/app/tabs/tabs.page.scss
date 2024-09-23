@@ -1,1 +1,9 @@
-
+.add{
+  background: var(--ion-color-dark-contrast);
+  color: var(--ion-color-dark);
+  border-radius: .2em;
+  min-width: 50px;
+}
+ion-tab-button{
+  max-width: 115px;
+}

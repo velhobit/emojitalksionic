@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AlertController, IonButton, IonCol, IonContent, IonGrid, IonHeader, IonInput, IonRow, IonTitle, IonToolbar, ModalController } from '@ionic/angular/standalone';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginPage implements OnInit {
   emoji: string = "happy";
   username: string = "";
   password: string = "";
-  constructor(private authService: AuthService, private alertController: AlertController, private modalController: ModalController) {
+  constructor(private authService: AuthService, private alertController: AlertController, private modalController: ModalController, private router: Router) {
 
   }
 
@@ -28,6 +29,11 @@ export class LoginPage implements OnInit {
         //console.log(data);
         this.emoji = "welcome";
         setInterval(() => {
+          const isAuthenticated = this.authService.isAuthenticated();
+
+          if (isAuthenticated) {
+            this.router.navigate(["feed"]);
+          }
           this.modalController.dismiss();
         },1000);
       },

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { environment } from '../../environments/environment';
 export class AuthService {
   private apiUrl = `${environment.apiUrl}`;  // URL da API
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router:Router) {}
 
   // Método para login (por email ou username)
   login(login: string, password: string): Observable<any> {
@@ -62,5 +63,7 @@ export class AuthService {
   // Método para logout
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.clear();
+    window.location.href = '/forums';
   }
 }

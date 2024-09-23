@@ -1,23 +1,26 @@
 import { Component, EnvironmentInjector, inject } from '@angular/core';
 import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonModal, ModalController, IonHeader, IonToolbar, IonTitle } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { disc, add, glasses, cog, compass, personCircle } from 'ionicons/icons';
+import { disc, add, glasses, cog, compass, personCircle, logIn } from 'ionicons/icons';
 import { LoginPage } from '../pages/login/login.page';
 import { AuthService } from '../services/auth.service';
 import { NewPostComponent } from '../components/new-post/new-post.component';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss'],
   standalone: true,
-  imports: [IonTabs, IonTabBar, IonToolbar, IonHeader, IonTitle, IonTabButton, IonIcon, IonLabel, IonModal],
+  imports: [IonTabs, IonTabBar, IonToolbar, IonHeader, IonTitle, IonTabButton, IonIcon, IonLabel, IonModal, CommonModule],
 })
 export class TabsPage {
   public environmentInjector = inject(EnvironmentInjector);
+  isAuthenticated: boolean = false;
 
-  constructor(private modalController: ModalController, private authService: AuthService) {
-    addIcons({ compass, glasses, cog, add, disc, personCircle});
+  constructor(private modalController: ModalController, private authService: AuthService, private router:Router) {
+    addIcons({ compass, glasses, cog, add, disc, personCircle, logIn});
   }
 
   async ngOnInit() {
@@ -25,10 +28,10 @@ export class TabsPage {
   }
 
   async checkAuthetication() {
-    const isAuthenticated = await this.authService.isAuthenticated();
+    this.isAuthenticated = await this.authService.isAuthenticated();
 
-    if (!isAuthenticated) {
-      this.openLogin();  // Se não autenticado, abre o modal de login
+    if (!this.isAuthenticated) {
+     //this.openLogin();  // Se não autenticado, abre o modal de login
     }
   }
 
@@ -53,6 +56,12 @@ export class TabsPage {
     });
 
     await modal.present();
-    const { data } = await modal.onDidDismiss();
+    await modal.onDidDismiss().then(data=> {
+      this.isAuthenticated = this.authService.isAuthenticated();
+
+      if (!this.isAuthenticated) {
+        this.router.navigate(["feed"]);
+      }
+    });
   }
 }

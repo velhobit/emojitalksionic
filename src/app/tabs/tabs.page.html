@@ -1,6 +1,6 @@
 <ion-tabs mode="ios">
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="feed" href="/feed">
+    <ion-tab-button tab="feed" href="/feed" [disabled]="!isAuthenticated">
       <ion-icon aria-hidden="true" name="disc"></ion-icon>
     </ion-tab-button>
 
@@ -8,15 +8,19 @@
       <ion-icon aria-hidden="true" name="glasses"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button (click)="openNewPost()">
-      <ion-icon aria-hidden="true" name="add"></ion-icon>
+    <ion-tab-button class="ion-margin" (click)="openNewPost()" *ngIf="isAuthenticated">
+      <ion-icon aria-hidden="true" class="add" name="add"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button class="ion-margin" (click)="openLogin()" *ngIf="!isAuthenticated">
+      <ion-icon aria-hidden="true" color="dark" name="log-in"></ion-icon> Entrar
     </ion-tab-button>
 
     <ion-tab-button tab="settings" href="/tabs/tab3">
       <ion-icon aria-hidden="true" name="compass"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button tab="profile" href="/tabs/tab3">
+    <ion-tab-button tab="profile" href="/profile" [disabled]="!isAuthenticated">
       <ion-icon aria-hidden="true" name="person-circle"></ion-icon>
     </ion-tab-button>
   </ion-tab-bar>
