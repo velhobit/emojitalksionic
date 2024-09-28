@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonGrid, IonRow, IonCol, IonButton, IonText, ToastController, ModalController, IonInput, IonPopover, IonItem, IonRouterOutlet } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonGrid, IonRow, IonCol, IonButton, IonText, ToastController, ModalController, IonInput, IonPopover, IonItem, IonRouterOutlet, IonList, IonLabel } from '@ionic/angular/standalone';
 import { ForumService } from '../../services/forum.service'
 import { GlobalService } from 'src/app/services/global.service';
 import { EmojiService } from 'src/app/services/emoji.service';
@@ -11,20 +11,21 @@ import { chatboxEllipsesOutline } from 'ionicons/icons';
 import { PageHeaderComponent } from 'src/app/components/page-header/page-header.component';
 
 @Component({
-  selector: 'app-forums',
-  templateUrl: './forums.page.html',
-  styleUrls: ['./forums.page.scss'],
+  selector: 'app-forum-select',
+  templateUrl: './forum-select.page.html',
+  styleUrls: ['./forum-select.page.scss'],
   standalone: true,
- imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, CommonModule, IonButton, IonInput, IonPopover, FormsModule, PageHeaderComponent, IonItem, IonRouterOutlet]
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, CommonModule, IonButton, IonInput, IonPopover, FormsModule, PageHeaderComponent, IonItem, IonRouterOutlet, IonList, IonText, IonLabel]
 })
-export class ForumsPage implements OnInit {
+export class ForumSelectPage implements OnInit {
+  emojiSearch: boolean = false;
   forums: any = {};
   emojisDB: any = {};
   emojiList: any[] = [];
   filteredEmojiList: any[] = [];
   searchValue?: string;
   constructor(private forumService: ForumService, private toastController: ToastController, private emojiService: EmojiService, private globalService: GlobalService, private modalController: ModalController, private router: Router) {
-    addIcons({chatboxEllipsesOutline});
+    addIcons({ chatboxEllipsesOutline });
   }
 
   ngOnInit() {
@@ -67,6 +68,15 @@ export class ForumsPage implements OnInit {
     }
   }
 
+  showEmojis() {
+    this.emojiSearch = true;
+  }
+  hideEmojis() {
+    if (!this.searchValue?.length) {
+      this.emojiSearch = false;
+    }
+  }
+
   getValidEmojis() {
     this.forumService.getForums().subscribe(data => {
       this.forums = data;
@@ -82,8 +92,8 @@ export class ForumsPage implements OnInit {
     });
   }
 
- goTo(alias: string) {
-   console.log('Navegando para:', alias);
-   this.router.navigate(["forums", alias]);
- }
+  goTo(alias: string) {
+    this.router.navigate(["forums", alias]);
+  }
+
 }

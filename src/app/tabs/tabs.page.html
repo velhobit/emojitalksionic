@@ -1,27 +1,41 @@
 <ion-tabs mode="ios">
   <ion-tab-bar slot="bottom">
+    <ion-tab-button class="add-post ion-hide-md-down" (click)="openNewPost()" *ngIf="isAuthenticated">
+      <ion-icon aria-hidden="true" name="add"></ion-icon>
+      <ion-label>Novo Post</ion-label>
+    </ion-tab-button>
+    <ion-tab-button class="add-post ion-hide-md-down" (click)="openLogin()" *ngIf="!isAuthenticated">
+      <ion-icon aria-hidden="true" name="add"></ion-icon>
+      <ion-label>Entrar</ion-label>
+    </ion-tab-button>
+
     <ion-tab-button tab="feed" href="/feed" [disabled]="!isAuthenticated">
       <ion-icon aria-hidden="true" name="disc"></ion-icon>
+      <ion-label>Meu Feed</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="forums" href="/forums">
       <ion-icon aria-hidden="true" name="glasses"></ion-icon>
+      <ion-label>Assuntos</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button class="ion-margin" (click)="openNewPost()" *ngIf="isAuthenticated">
-      <ion-icon aria-hidden="true" class="add" name="add"></ion-icon>
+    <ion-tab-button class="ion-margin add" (click)="openNewPost()" *ngIf="isAuthenticated">
+      <ion-icon aria-hidden="true" name="add"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button class="ion-margin" (click)="openLogin()" *ngIf="!isAuthenticated">
-      <ion-icon aria-hidden="true" color="dark" name="log-in"></ion-icon> Entrar
+    <ion-tab-button class="ion-margin" class="ion-hide-md-up" (click)="openLogin()" *ngIf="!isAuthenticated">
+      <ion-icon aria-hidden="true" color="dark" name="log-in"></ion-icon>
+      <ion-label>Entrar</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="settings" href="/tabs/tab3">
       <ion-icon aria-hidden="true" name="compass"></ion-icon>
+      <ion-label>Recentes</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="profile" href="/profile" [disabled]="!isAuthenticated">
       <ion-icon aria-hidden="true" name="person-circle"></ion-icon>
+      <ion-label>Perfil</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

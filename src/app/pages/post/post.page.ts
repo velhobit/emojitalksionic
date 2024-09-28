@@ -5,13 +5,14 @@ import { IonAvatar, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, Ion
 import { PostService, Post } from 'src/app/services/post.service';
 import * as marked from 'marked';
 import { ActivatedRoute } from '@angular/router';
+import { PageHeaderComponent } from 'src/app/components/page-header/page-header.component';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.page.html',
   styleUrls: ['./post.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonList, IonItem, IonFab, IonFabButton, IonIcon, IonText, IonLabel, IonAvatar]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonList, IonItem, IonFab, IonFabButton, IonIcon, IonText, IonLabel, IonAvatar, PageHeaderComponent]
 })
 export class PostPage implements OnInit {
   uuid: string | null;

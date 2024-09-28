@@ -1,2 +1,22 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
+// src/theme/variables.scss
+
+:root {
+  --ion-color-primary: #e27a01; // Cor primária
+  --ion-color-primary-tint: #f6b43f; // Tint da cor primária
+  --ion-color-primary-shade: #c46e01; // Shade da cor primária
+
+  --ion-color-primary-dark: #ffcd0e; // Cor primária escura
+  --ion-color-primary-dark-tint: #ffdd4a; // Tint da cor primária escura
+  --ion-color-primary-dark-shade: #d5b30e; // Shade da cor primária escura
+}
+
+// Modo escuro
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ion-color-primary: #ffcd0e; // Usar a cor primária escura no modo escuro
+    --ion-color-primary-tint: #ffe56b; // Tint da cor primária escura
+    --ion-color-primary-shade: #e1b700; // Shade da cor primária escura
+  }
+}

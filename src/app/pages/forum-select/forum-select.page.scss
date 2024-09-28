@@ -1,0 +1,50 @@
+ion-content{
+  ion-button{
+    font-size: 2em;
+    --padding-start: .3em;
+    --padding-end: .3em;
+    --padding-top: .3em;
+    --padding-bottom: .3em;
+    margin-top: .3em;
+    border: 1px solid var(--ion-color-light-shade);
+    border-radius: 50%;
+  }
+
+  ion-input{
+    font-size: 1em;
+    ::ng-deep{
+      input{
+        padding: 8px 0;
+      }
+    }
+  }
+
+  .forums-list{
+    ion-item{
+      --background: var(--ion-color-light);
+      border-bottom: 1px solid var(--ion-color-light-shade);
+      ion-text{
+        min-width: 64px;
+        max-width: 64px;
+        overflow: hidden;
+        display: flex;
+        letter-spacing: -.7em;
+        justify-content: stretch;
+        transition: all .3s;
+        span{
+          display: block;
+        }
+      }
+
+      &:hover{
+        ion-text{
+          max-width: 1000px;
+          letter-spacing: 0;
+        }
+      }
+      &:last-child{
+        border-bottom: none;
+      }
+    }
+  }
+}

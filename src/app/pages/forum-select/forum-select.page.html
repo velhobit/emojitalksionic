@@ -1,0 +1,27 @@
+<ion-content [fullscreen]="true" mode="ios">
+ <ion-grid fixed="true" class="feed">
+   <ion-row>
+     <ion-col class="search ion-padding">
+       <ion-input type="search" (ionFocus)="showEmojis()" (ionBlur)="hideEmojis()" [(ngModel)]="searchValue" (input)="filterForums()" id="fill-emoji" size="small" fill="outline" mode="md" shape="round" class="ion-text-center" placeholder="Busque por tema ou emoji">
+       </ion-input>
+     </ion-col>
+   </ion-row>
+   <ion-row *ngIf="!emojiSearch">
+     <ion-col>
+       <ion-list *ngIf="forums.length" class="forums-list" lines="none" [inset]="true" mode="ios">
+         <ion-item *ngFor="let forum of forums" [button]="true" (click)="goTo(forum.alias)" >
+          <ion-text slot="start">
+            <span *ngFor="let emoji of forum.forum_emojis">{{emoji.emoji}}</span>
+          </ion-text>
+          <ion-label>{{forum.name}}</ion-label>
+         </ion-item>
+       </ion-list>
+     </ion-col>
+   </ion-row>
+   <ion-row class="ion-padding" *ngIf="emojiSearch">
+     <ion-col *ngFor="let emoji of filteredEmojiList" size="2">
+       <ion-button (mousedown)="goTo(emoji.alias)" [id]="emoji.forum" [title]="emoji.title" class="ion-no-margin ion-no-padding" fill="clear" shape="round" mode="md" color="dark">{{emoji.emoji}}</ion-button>
+     </ion-col>
+   </ion-row>
+ </ion-grid>
+</ion-content>

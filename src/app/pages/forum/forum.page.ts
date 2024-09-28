@@ -4,27 +4,29 @@ import { FormsModule } from '@angular/forms';
 import { IonAvatar, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonFab, IonFabButton, IonGrid, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonRow, IonText, IonTitle, IonToolbar, ModalController } from '@ionic/angular/standalone';
 import { PostService, Post } from 'src/app/services/post.service';
 import { addIcons } from 'ionicons';
-import { add } from 'ionicons/icons';
+import { add, arrowBack } from 'ionicons/icons';
 import * as marked from 'marked';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NewPostComponent } from 'src/app/components/new-post/new-post.component';
 import { ForumService } from 'src/app/services/forum.service';
 import { GlobalService } from 'src/app/services/global.service';
+import { CardFeedComponent } from 'src/app/components/card-feed/card-feed.component';
+import { PageHeaderComponent } from 'src/app/components/page-header/page-header.component';
 
 @Component({
   selector: 'app-forum',
   templateUrl: './forum.page.html',
   styleUrls: ['./forum.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonList, IonItem, IonFab, IonFabButton, IonIcon, IonText, IonLabel, IonAvatar, IonButton]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonList, IonItem, IonFab, IonFabButton, IonIcon, IonText, IonLabel, IonAvatar, IonButton, CardFeedComponent, PageHeaderComponent]
 })
 export class ForumPage implements OnInit {
   posts: Post[] = [];
   forumAlias?: any = "";
-  forum: any = "";
+  forum?: any | undefined;
   constructor(private forumService: ForumService, private router: Router, private activateRoute: ActivatedRoute, private modalCtrl: ModalController, private globalService: GlobalService) {
     this.forumAlias = this.activateRoute.snapshot.paramMap.get('alias');
-    addIcons({ add });
+    addIcons({ add,  arrowBack });
   }
 
   ngOnInit() {
@@ -47,4 +49,7 @@ export class ForumPage implements OnInit {
     this.router.navigate(['post', uuid]);
   }
 
+  goBack() {
+    this.router.navigate(['forums']);
+  }
 }

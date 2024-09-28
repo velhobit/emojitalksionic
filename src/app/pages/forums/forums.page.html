@@ -1,21 +1,6 @@
-<ion-header [translucent]="true" mode="ios">
-  <ion-toolbar>
-    <ion-title>Assuntos</ion-title>
-  </ion-toolbar>
+<ion-header mode="ios">
+  <page-header></page-header>
 </ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-grid fixed="true" class="feed">
-    <ion-row>
-      <ion-col>
-        <ion-input [(ngModel)]="searchValue" (input)="filterForums()" id="fill-emoji" fill="outline" mode="md" class="ion-text-center">
-        </ion-input>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col *ngFor="let emoji of filteredEmojiList">
-        <ion-button (click)="goTo(emoji.alias)" (mouseout)="hideForumName()" (mouseover)="showForumName(emoji.title)" [id]="emoji.forum" [title]="emoji.title" class="ion-no-margin ion-no-padding" fill="clear" shape="round" mode="md">{{emoji.emoji}}</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+<ion-content>
+  <ion-router-outlet></ion-router-outlet>
 </ion-content>

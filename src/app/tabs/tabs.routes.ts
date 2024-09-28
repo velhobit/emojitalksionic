@@ -18,8 +18,7 @@ export const routes: Routes = [
       },
       {
         path: 'forums',
-        loadComponent: () =>
-          import('../pages/forums/forums.page').then(m => m.ForumsPage),
+        loadChildren: () => import('../pages/forums/forums.route').then((m) => m.routes),
       },
       {
         path: 'profile',
@@ -27,20 +26,15 @@ export const routes: Routes = [
           import('../pages/profile/profile.page').then(m => m.ProfilePage),
       },
       {
-        path: ':alias',
-        loadComponent: () =>
-          import('../pages/forum/forum.page').then(m => m.ForumPage),
-      },
-      {
         path: '',
-        redirectTo: 'forums', // ou outra rota padrão
+        redirectTo: 'forums', // redireciona para forums se o caminho estiver vazio
         pathMatch: 'full',
       },
     ],
   },
   {
     path: 'feed',
-    redirectTo: '', // ou outra rota inicial válida
+    redirectTo: 'feed', // redireciona para a rota feed
     pathMatch: 'full',
   },
 ];
