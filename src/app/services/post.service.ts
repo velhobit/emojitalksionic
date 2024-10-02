@@ -36,8 +36,14 @@ export class PostService {
   }
 
   // Create a new post
-  createPost(post: Post): Observable<Post> {
-    return this.http.post<Post>(this.apiUrl, { post });
+  createPost(post: any): Observable<Post> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    console.log(headers);
+    console.log(post);
+    return this.http.post<Post>(this.apiUrl, post, { headers });
   }
 
   // Update an existing post

@@ -2,7 +2,7 @@
   <ion-grid class="ion-padding">
     <ion-row>
       <ion-col>
-        <h1 class="ion-no-margin">{{emoji}} {{forum?.name}}</h1>
+        <h1 class="ion-no-margin"><span [ngClass]="{'shrink-and-bounce': changeEmoji}">{{emoji}}</span> {{forum?.name}}</h1>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -16,17 +16,17 @@
           </ion-segment-button>
         </ion-segment>
         <div class="segments ion-margin-top ion-margin-bottom">
-          <div [ngClass]="{ 'hidden': selectedEditor !== 'default' }">
+          <div  [ngClass]="{ 'hidden': selectedEditor !== 'default', 'dissolve-appear': selectedEditor == 'default'}">
             <!-- Editor Quill -->
             <div class="editor" id="editor" #editor></div>
           </div>
-          <div *ngIf="selectedEditor == 'markdown'">
+          <div *ngIf="selectedEditor == 'markdown', 'dissolve-appear': selectedEditor == 'markdown'">
             <ion-textarea [(ngModel)]="markdownContent" class="default-editor" labelPlacement="floating" mode="ios" fill="outline" placeholder="Compartilhe suas perguntas, dúvidas, curiosidades ou apenas algo que gostaria de discutir."></ion-textarea>
           </div>
         </div>
         <ion-item lines="none" class="ion-no-padding ion-no-margin">
           <ion-button fill="clear" size="medium" color="danger" mode="md" slot="start" (click)="cancel()">Cancelar</ion-button>
-          <ion-button mode="md" fill="outline" size="medium" slot="end">Publicar</ion-button>
+          <ion-button mode="md" fill="outline" size="medium" slot="end" (click)="createPost()">Publicar</ion-button>
         </ion-item>
       </ion-col>
     </ion-row>

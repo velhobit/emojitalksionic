@@ -25,6 +25,10 @@ export class TabsPage {
 
   async ngOnInit() {
     this.checkAuthetication();
+
+    setInterval(()=>{
+      this.authService.validateToken().subscribe();
+    }, 60000);
   }
 
   async checkAuthetication() {

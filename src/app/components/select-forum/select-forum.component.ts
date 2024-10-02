@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonInput, IonPopover, IonRow, IonTitle, IonToolbar, ModalController, ToastController } from '@ionic/angular/standalone';
+import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonPopover, IonRow, IonText, IonTitle, IonToolbar, ModalController, ToastController } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { close } from 'ionicons/icons';
 import { EmojiService } from 'src/app/services/emoji.service';
 import { ForumService } from 'src/app/services/forum.service';
 import { GlobalService } from 'src/app/services/global.service';
@@ -11,15 +13,18 @@ import { GlobalService } from 'src/app/services/global.service';
   templateUrl: './select-forum.component.html',
   styleUrls: ['./select-forum.component.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, CommonModule, IonButton, IonInput, IonPopover, FormsModule, IonButtons]
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, CommonModule, IonButton, IonInput, IonPopover, FormsModule, IonButtons, IonList, IonItem, IonText, IonLabel, IonIcon]
 })
 export class SelectForumComponent implements OnInit {
+  emojiSearch: boolean = false;
   forums: any = {};
   emojisDB: any = {};
   emojiList: any[] = [];
   filteredEmojiList: any[] = [];
   searchValue?: string;
-  constructor(private forumService: ForumService, private toastController: ToastController, private emojiService: EmojiService, private globalService: GlobalService, private modalController: ModalController) { }
+  constructor(private forumService: ForumService, private toastController: ToastController, private emojiService: EmojiService, private globalService: GlobalService, private modalController: ModalController) {
+    addIcons({close});
+  }
 
   ngOnInit() {
     this.getEmojis();
@@ -76,7 +81,7 @@ export class SelectForumComponent implements OnInit {
     });
   }
 
-  async closeMe(forum: any, emoji: string){
+  async closeMe(forum: string, emoji: string){
     await this.globalService.setForum(forum);
     await this.globalService.setEmoji(emoji);
     await this.modalController.dismiss();
@@ -87,6 +92,15 @@ export class SelectForumComponent implements OnInit {
     while (topModal) {
       await this.modalController.dismiss();
       const topModal = await this.modalController.getTop();
+    }
+  }
+
+  showEmojis() {
+    this.emojiSearch = true;
+  }
+  hideEmojis() {
+    if (!this.searchValue?.length) {
+      this.emojiSearch = false;
     }
   }
 }

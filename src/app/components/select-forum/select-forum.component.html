@@ -1,8 +1,8 @@
-<ion-header [translucent]="true" mode="ios">
+<ion-header [translucent]="true" mode="md">
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-buttons slot="end">
       <ion-button (click)="closeAllModals()">
-        Cancelar
+        <ion-icon name="close" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-title>Onde você deseja publicar?</ion-title>
@@ -11,28 +11,28 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col>
-        <ion-input [(ngModel)]="searchValue" (input)="filterForums()" id="fill-emoji" fill="outline" mode="md" class="ion-text-center">
-        </ion-input>
-        <!--<ion-popover trigger="fill-emoji" triggerAction="click">
-          <ng-template>
-            <ion-content class="ion-padding">
-              <ion-grid>
-                <ion-row>
-                  <ion-col *ngFor="let emoji of emojisDB">
-                    {{emoji.char}}
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-            </ion-content>
-          </ng-template>
-        </ion-popover>-->
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col *ngFor="let emoji of filteredEmojiList">
-        <ion-button (click)="closeMe(emoji.forumDetails, emoji.emoji)" (mouseout)="hideForumName()" (mouseover)="showForumName(emoji.title)" [id]="emoji.forum" [title]="emoji.title" class="ion-no-margin ion-no-padding" fill="clear" shape="round" mode="md">{{emoji.emoji}}</ion-button>
-      </ion-col>
-    </ion-row>
+       <ion-col class="search ion-padding">
+         <ion-input type="search" (ionFocus)="showEmojis()" (ionBlur)="hideEmojis()" [(ngModel)]="searchValue" (input)="filterForums()" id="fill-emoji" size="small" fill="outline" mode="md" shape="round" class="ion-text-center" placeholder="Busque por tema ou emoji">
+         </ion-input>
+       </ion-col>
+     </ion-row>
+     <ion-row *ngIf="!emojiSearch">
+       <ion-col>
+         <ion-list *ngIf="forums.length" class="forums-list" lines="none" [inset]="true" mode="ios">
+           <ion-item *ngFor="let forum of forums" [button]="true" (click)="closeMe(forum._id, forum?.forum_emojis[0]?.emoji)" >
+            <ion-text slot="start">
+              <span *ngFor="let emoji of forum.forum_emojis">{{emoji.emoji}}</span>
+            </ion-text>
+            <ion-label>{{forum.name}}</ion-label>
+           </ion-item>
+         </ion-list>
+       </ion-col>
+     </ion-row>
+     <ion-row class="ion-padding" *ngIf="emojiSearch">
+       <ion-col *ngFor="let emoji of filteredEmojiList" size="2">
+         <ion-button (mousedown)="closeMe(emoji.forum, emoji.emoji)" [id]="emoji.forum" [title]="emoji.title" class="ion-no-margin ion-no-padding" fill="clear" shape="round" mode="md" color="dark">{{emoji.emoji}}</ion-button>
+       </ion-col>
+     </ion-row>
   </ion-grid>
 </ion-content>
+

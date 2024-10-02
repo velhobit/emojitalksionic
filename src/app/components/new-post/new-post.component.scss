@@ -2,10 +2,14 @@ ion-item{
   background: transparent;
   --background: transparent;
 }
+h1 span{
+  display: inline-block;
+}
 .segments{
+  border: 1px solid var(--ion-color-medium);
+  border-radius: .5em;
+
   ion-textarea{
-    border: 1px solid var(--ion-color-medium);
-    border-radius: .5em;
     padding: .85em;
     padding-top: 0;
     font-family: monospace;
@@ -17,11 +21,12 @@ ion-item{
   ::ng-deep{
     .ql-toolbar{
       border-radius: .5em .5em 0 0;
-      border: 1px solid var(--ion-color-medium);
+      border: none;
+      border-bottom: 1px solid var(--ion-color-medium);
     }
     .ql-container{
       border-radius: 0 0 .5em .5em;
-      border: 1px solid var(--ion-color-medium);
+      border: none;
     }
 
     .ql-stroke, .ql-snow .ql-stroke{

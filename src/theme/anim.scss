@@ -1,0 +1,32 @@
+@keyframes shrink-and-bounce {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(0); /* Em 0.2s (20%) a div encolhe até o tamanho zero */
+  }
+  60% {
+    transform: scale(1.05); /* No meio do bounce, a imagem cresce um pouco além de 1 */
+  }
+  100% {
+    transform: scale(1); /* A imagem volta para a escala 1 no final */
+  }
+}
+
+.shrink-and-bounce {
+  animation: shrink-and-bounce 0.7s ease forwards;
+}
+
+
+@keyframes dissolve-appear {
+  0% {
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+.dissolve-appear {
+  animation: dissolve-appear 0.4s ease forwards;
+}

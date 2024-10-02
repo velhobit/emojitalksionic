@@ -11,23 +11,23 @@ export class GlobalService {
   }
 
   getForum(): any {
-    let forum: any = sessionStorage.getItem(this.storageAlias + "forum");
-    if (forum == undefined || forum?.length) {
+    let forum: any = localStorage.getItem(this.storageAlias + "forum");
+    if (forum == undefined || !forum?.length) {
       return false;
     }
-    return JSON.parse(forum);;
+    return forum;
   }
   setForum(forum: any) {
     this.forum = forum;
-    sessionStorage.setItem(this.storageAlias + "forum", JSON.stringify(forum));
+    localStorage.setItem(this.storageAlias + "forum", forum);
   }
 
   getEmoji(): string {
-    const emoji = sessionStorage.getItem(this.storageAlias + "emoji")!;
+    const emoji = localStorage.getItem(this.storageAlias + "emoji")!;
     return emoji;
   }
   setEmoji(emoji: string) {
-    sessionStorage.setItem(this.storageAlias + "emoji", emoji);
+    localStorage.setItem(this.storageAlias + "emoji", emoji);
   }
 
   shuffleArray<T>(array: T[]): T[] {

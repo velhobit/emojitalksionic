@@ -7,6 +7,7 @@ import * as marked from 'marked';
 import TurndownService from 'turndown';
 import { GlobalService } from 'src/app/services/global.service';
 import { SelectForumComponent } from '../select-forum/select-forum.component';
+import { PostService } from 'src/app/services/post.service';
 //Extends Quill
 
 
@@ -26,7 +27,9 @@ export class NewPostComponent implements OnInit {
   markdownContent: string = "";
   selectedEditor?: string = "default";
   turndownService = new TurndownService();
-  constructor(private modalCtrl: ModalController, private globalSerivce: GlobalService) { }
+  changeEmoji:boolean = false;
+  title: string = "";
+  constructor(private modalCtrl: ModalController, private globalSerivce: GlobalService, private postService: PostService) { }
 
   async ngOnInit() {
     this.forum = await this.globalSerivce.getForum();
@@ -37,6 +40,7 @@ export class NewPostComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    this.changeEmoji = true;
     this.initializeQuill();
   }
 
@@ -61,6 +65,7 @@ export class NewPostComponent implements OnInit {
   }
 
   async openSelectForum() {
+    this.changeEmoji = false;
     const modal = await this.modalCtrl.create({
       component: SelectForumComponent,
       cssClass: 'select-forum',
@@ -74,9 +79,10 @@ export class NewPostComponent implements OnInit {
     this.upgradeInfo(data);
   }
 
-  upgradeInfo(data: any) {
-    this.forum = this.globalSerivce.getForum();
-    this.emoji = this.globalSerivce.getEmoji();
+  async upgradeInfo(data: any) {
+    this.forum = await this.globalSerivce.getForum();
+    this.emoji = await this.globalSerivce.getEmoji();
+    this.changeEmoji = true;
   }
 
   convertMarkdownToHtml() {
@@ -86,6 +92,9 @@ export class NewPostComponent implements OnInit {
     } else {
       console.error('Quill error.');
     }
+
+    let el: any = document.querySelector(".ql-editor");
+    el.focus();
   }
 
   convertHtmlToMarkdown() {
@@ -94,5 +103,27 @@ export class NewPostComponent implements OnInit {
 
   cancel() {
     this.modalCtrl.dismiss();
+  }
+
+  async createPost(){
+    this.forum = await this.globalSerivce.getForum();
+    this.emoji = await this.globalSerivce.getEmoji();
+    await this.convertHtmlToMarkdown();
+   console.log("Forum",this.forum);
+    let post = {
+      title: this.title,
+      content: this.markdownContent,
+      forum_id: this.forum,
+      emoji: this.emoji,
+    }
+    this.postService.createPost(post).subscribe(
+      (data) => {
+
+      },
+      (error) => {
+        console.error(error);
+        alert(error.error);
+      }
+    );
   }
 }
