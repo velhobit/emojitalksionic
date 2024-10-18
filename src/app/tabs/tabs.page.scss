@@ -45,12 +45,22 @@ ion-tab-button{
     }
 
     &.add-post{
-      --background: var(--ion-color-dark-contrast);
-      border: 1px solid var(--ion-color-primary);
-      border-radius: 5px;
-      color: var(--ion-white);
+      --background: var(--ion-color-primary);
+      border: 1px solid var(--ion-color-light);
+      border-radius: 50px;
+      color: var(--ion-color-light);
+      text-transform: uppercase;
       width: 100%;
+      padding: 0 .5em ;
+      text-align: center;
+      display: block;
+      min-width: 100%;
       margin-bottom: 1em;
+      &:hover{
+        transition: all .3s;
+        --background: var(--ion-color-light);
+        border: 1px solid var(--ion-color-primary);
+      }
     }
   }
 

@@ -2,9 +2,28 @@ ion-item{
   background: transparent;
   --background: transparent;
 }
-h1 span{
-  display: inline-block;
+h1{
+  padding: 0;
+  --padding-top:0;
+  --padding-bottom: 0;
+  --height: auto;
+    font-size: 14px;
+    line-height: 14px;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 30px;
+    overflow: visible;
+    &:hover{
+      background-color: var(--ion-color-light);
+    }
+    span{
+      display: inline-block;
+      margin-right: .3em;
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
 }
+
 .segments{
   border: 1px solid var(--ion-color-medium);
   border-radius: .5em;
@@ -13,10 +32,10 @@ h1 span{
     padding: .85em;
     padding-top: 0;
     font-family: monospace;
-    min-height: calc(75vh + 29px);
+    min-height: calc(45vh + 29px);
   }
   .editor{
-    height: 75vh;
+    height: 45vh;
   }
   ::ng-deep{
     .ql-toolbar{

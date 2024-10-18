@@ -7,6 +7,11 @@ export const routes: Routes = [
     component: TabsPage,
     children: [
       {
+        path: 'news',
+        loadComponent: () =>
+          import('../pages/news/news.page').then(m => m.NewsPage),
+      },
+      {
         path: 'feed',
         loadComponent: () =>
           import('../pages/feed/feed.page').then(m => m.FeedPage),

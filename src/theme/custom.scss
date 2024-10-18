@@ -116,7 +116,7 @@ ion-card{
 /* Estilos aplicados apenas para tablets e desktops */
 @media (min-width: 768px) {
   ion-modal.new-post {
-    --height: 325px;
+    --height: 400px;
     --border-radius: 16px;
     --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   }

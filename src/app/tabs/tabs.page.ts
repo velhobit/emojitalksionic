@@ -36,7 +36,17 @@ export class TabsPage {
 
     if (!this.isAuthenticated) {
      //this.openLogin();  // Se não autenticado, abre o modal de login
+    }else{
+      this.validateToken();
     }
+  }
+
+  validateToken(){
+    this.authService.validateToken().subscribe( data =>{
+       this.isAuthenticated = true;
+    }, error => {
+      this.isAuthenticated = false;
+    });
   }
 
   async openNewPost() {

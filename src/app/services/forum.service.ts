@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
@@ -12,6 +12,13 @@ export class ForumService {
 
   constructor(private http: HttpClient) { }
 
+  private getAuthHeaders(): HttpHeaders {
+      const token = localStorage.getItem('token');
+      return new HttpHeaders({
+          'Authorization': `Bearer ${token}`
+      });
+  }
+
   // Obtém todos os fóruns
   getForums(): Observable<any> {
     return this.http.get<any>(this.apiUrl).pipe(
@@ -22,7 +29,8 @@ export class ForumService {
 
   // Obtém posts de um forum pelo alias
   getPosts(alias:string): Observable<any>{
-    return this.http.get<any>(`${this.apiUrl}/${alias}/posts`).pipe(
+  const headers = localStorage.getItem('token') ? this.getAuthHeaders() : undefined;
+    return this.http.get<any>(`${this.apiUrl}/${alias}/posts`, {headers: headers}).pipe(
       map(response => response),  // Manipule a resposta conforme necessário
       catchError(this.handleError<any>('getPosts', []))  // Tratamento de erros
     );

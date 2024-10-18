@@ -1,0 +1,21 @@
+.profile{
+  .color-block{
+    height: 2.5rem;
+    margin-top: -1em;
+    background: var(--ion-color-primary);
+  }
+  .profile-header{
+    overflow: visible;
+    ion-avatar{
+      margin-top: -2rem;
+      width: 4em;
+      height: 4em;
+    }
+
+    h1{
+      font-size: 1rem;
+      font-weight: bold;
+      line-height: .8rem;
+    }
+  }
+}

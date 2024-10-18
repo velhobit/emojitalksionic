@@ -13,4 +13,8 @@ export const routes: Routes = [
     path: 'forum-select',
     loadComponent: () => import('./pages/forum-select/forum-select.page').then( m => m.ForumSelectPage)
   },
+  {
+    path: 'news',
+    loadComponent: () => import('./pages/news/news.page').then( m => m.NewsPage)
+  },
 ];

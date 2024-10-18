@@ -25,17 +25,27 @@ export class LoginPage implements OnInit {
 
   login() {
     this.authService.login(this.username, this.password).subscribe(
-      data => {
-        //console.log(data);
-        this.emoji = "welcome";
-        setInterval(() => {
-          const isAuthenticated = this.authService.isAuthenticated();
-
-          if (isAuthenticated) {
-            this.router.navigate(["feed"]);
-          }
-          this.modalController.dismiss();
-        },1000);
+      async (data:any) => {
+        if(data.status == 401){
+          let errorAlert = await this.alertController.create({
+            mode: "ios",
+            header: "😓",
+            subHeader: "Nome de usuáro ou senha errado",
+            message: "Por favor verifique se seu nome de usuário e senha foi digitado corretamente.",
+            buttons: ["OK"]
+          });
+          errorAlert.present();
+        }else{
+          this.emoji = "welcome";
+          setTimeout(() => {
+            const isAuthenticated = this.authService.isAuthenticated();
+            console.error(isAuthenticated);
+            if (isAuthenticated) {
+              document.location.reload();
+            }
+            this.modalController.dismiss();
+          },1000);
+        }
       },
       async error => {
         //console.error('Login failed', error);

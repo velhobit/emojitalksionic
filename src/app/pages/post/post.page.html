@@ -27,5 +27,58 @@
        </ion-card>
       </ion-col>
     </ion-row>
+    <ion-row>
+      <ion-col class="ion-padding">
+          <ion-text>Comentários</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card mode="md" class="card-feed card-comment">
+          <ion-list class="card-author" *ngIf="isAuthenticated">
+            <ion-item lines="none">
+              <ion-avatar aria-hidden="true" slot="start">
+                 <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+               </ion-avatar>
+              <ion-label slot="start">
+                 {{currentUser?.name}}
+               </ion-label>
+            </ion-item>
+          </ion-list>
+          <ion-card-content  *ngIf="isAuthenticated">
+            <ion-textarea mode="md" fill="outline" placeholder="Comentar" [(ngModel)]="comment"></ion-textarea>
+          </ion-card-content>
+          <ion-item lines="none"  *ngIf="isAuthenticated">
+            <ion-button slot="end" (click)="createComment()" [disabled]="comment.length == 0">
+              <ion-icon name="send" slot="start"></ion-icon> Enviar</ion-button>
+          </ion-item>
+          <ion-button expand="full" size="medium"  *ngIf="!isAuthenticated" (click)="openLogin()">
+          Faça login para comentar</ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid fixed="true" class="feed comments">
+    <ion-row *ngFor="let comment of comments" class="comment">
+      <ion-col>
+        <ion-card mode="md" class="card-feed no-card">
+           <ion-list class="card-author">
+             <ion-item lines="none">
+               <ion-avatar aria-hidden="true" slot="start">
+                  <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                </ion-avatar>
+               <ion-label>
+                 <h4>{{comment?.author?.name}}</h4>
+                 <h5>{{comment?.author?.username}}</h5>
+               </ion-label>
+               <ion-button color="danger" fill="clear" (click)="destroyComment(comment?._id)" *ngIf="comment?.author?.uuid == currentUser?.uuid">
+                 <ion-icon name="trash" slot="icon-only"></ion-icon>
+               </ion-button>
+             </ion-item>
+           </ion-list>
+           <ion-card-content [innerHTML]="convertMarkdownToHtml(comment?.content || '')"></ion-card-content>
+         </ion-card>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>

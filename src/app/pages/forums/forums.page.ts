@@ -23,6 +23,8 @@ export class ForumsPage implements OnInit {
   emojiList: any[] = [];
   filteredEmojiList: any[] = [];
   searchValue?: string;
+  loggedIn: boolean = false;
+
   constructor(private forumService: ForumService, private toastController: ToastController, private emojiService: EmojiService, private globalService: GlobalService, private modalController: ModalController, private router: Router) {
     addIcons({chatboxEllipsesOutline});
   }
@@ -83,7 +85,6 @@ export class ForumsPage implements OnInit {
   }
 
  goTo(alias: string) {
-   console.log('Navegando para:', alias);
    this.router.navigate(["forums", alias]);
  }
 }

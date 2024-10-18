@@ -2,13 +2,29 @@ ion-img{
   max-width: 1.61em;
   height: auto;
 }
-h1{
-  margin: 0;
-  font-weight: bold;
-  font-size: 1.61em;
-  font-family: joly-text, sans-serif;
-}
+
 ion-item{
   text-align: center;
   --background: transparent;
+}
+
+ion-button{
+  --padding-start: .85em;
+  --padding-end: .85em;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --box-shadow: none;
+  text-transform: none;
+  h1{
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.61em;
+    font-family: joly-text, sans-serif;
+    margin-left: .4em;
+  }
+}
+
+.header {
+  background-color: rgba(var(--ion-color-light-rgb), 0.4);
+  backdrop-filter: blur(10px);
 }

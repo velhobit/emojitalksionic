@@ -1,8 +1,8 @@
 <ion-tabs mode="ios">
   <ion-tab-bar slot="bottom">
-    <ion-tab-button class="add-post ion-hide-md-down" (click)="openNewPost()" *ngIf="isAuthenticated">
+    <ion-tab-button expand="full" shape="round" class="add-post ion-hide-md-down" (click)="openNewPost()" *ngIf="isAuthenticated">
       <ion-icon aria-hidden="true" name="add"></ion-icon>
-      <ion-label>Novo Post</ion-label>
+      <ion-label>Criar Heelp</ion-label>
     </ion-tab-button>
     <ion-tab-button class="add-post ion-hide-md-down" (click)="openLogin()" *ngIf="!isAuthenticated">
       <ion-icon aria-hidden="true" name="add"></ion-icon>
@@ -28,7 +28,7 @@
       <ion-label>Entrar</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="settings" href="/tabs/tab3">
+    <ion-tab-button tab="news" href="/news">
       <ion-icon aria-hidden="true" name="compass"></ion-icon>
       <ion-label>Recentes</ion-label>
     </ion-tab-button>

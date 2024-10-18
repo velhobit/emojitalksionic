@@ -1,0 +1,22 @@
+
+<ion-header mode="ios">
+  <page-header></page-header>
+</ion-header>
+<ion-content [fullscreen]="true" mode="ios">
+  <ion-grid fixed="true" class="feed">
+    <ion-row>
+      <ion-col>
+        <h2 class="ion-no-margin ion-padding-start ion-padding-end">Recentes</h2>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let post of feed">
+      <ion-col>
+        <card-feed [post]="post"></card-feed>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-infinite-scroll (ionInfinite)="nextPage($event)">
+    <ion-infinite-scroll-content>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,43 +1,56 @@
-<ion-header [translucent]="true" mode="ios">
-  <ion-toolbar>
-    <ion-title>Meu Perfil</ion-title>
-  </ion-toolbar>
+<ion-header mode="ios">
+  <page-header></page-header>
 </ion-header>
-
 <ion-content [fullscreen]="true" mode="ios">
   <ion-grid class="feed" fixed="true">
     <ion-row>
       <ion-col>
-        <ion-list>
-          <ion-item>
-            <ion-label>
-              <h1>Rodrigo Portillo</h1>
-              <p>nomeusuario</p>
-            </ion-label>
-            <ion-avatar aria-hidden="true" slot="end">
-              <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-            </ion-avatar>
-          </ion-item>
-          <ion-item>
-            <ion-input label="Nome"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input label="Usuário"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input label="E-mail" type="email"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-toggle>
-              <ion-label>Permitir Notificações</ion-label>
-              <ion-note color="medium">Pode desmarcar a qualquer momento</ion-note>
-            </ion-toggle>
-          </ion-item>
-          <ion-item lines="none">
-            <ion-button slot="start" fill="clear">Atualizar Senha</ion-button>
-            <ion-button slot="end" fill="clear" color="danger" (click)="logout()">Sair</ion-button>
-          </ion-item>
-        </ion-list>
+        <ion-card mode="md" class="card-feed profile">
+          <ion-list>
+            <div class="color-block">
+            </div>
+            <ion-item class="profile-header">
+              <ion-label>
+                <h1>{{currentUser?.name}}</h1>
+                <p>{{currentUser?.username}}</p>
+              </ion-label>
+              <ion-avatar aria-hidden="true" slot="start">
+                <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+              </ion-avatar>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Nome" [(ngModel)]="currentUser.name"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Usuário" [(ngModel)]="currentUser.username"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="E-mail" type="email" [(ngModel)]="currentUser.email"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-toggle>
+                <ion-label>Permitir Notificações</ion-label>
+                <ion-note color="medium">Pode desmarcar a qualquer momento</ion-note>
+              </ion-toggle>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-button slot="start" fill="clear">Atualizar Senha</ion-button>
+              <ion-button slot="end" fill="clear" color="danger" (click)="logout()">Sair</ion-button>
+            </ion-item>
+          </ion-list>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-padding">
+        <ion-segment value="heelpz">
+          <ion-segment-button value="heelpz">
+            <ion-label>Heelpz</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="comments">
+            <ion-label>Comentários</ion-label>
+          </ion-segment-button>
+        </ion-segment>
       </ion-col>
     </ion-row>
   </ion-grid>

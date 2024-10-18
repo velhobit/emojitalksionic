@@ -18,6 +18,14 @@
     <ion-card-content [innerHTML]="(convertMarkdownToHtml(post?.content) | slice:0:128) + '...'"></ion-card-content>
   </ion-item>
   <ion-item class="card-footer" lines="none">
+    <ion-chip slot="start" *ngIf="post.is_liked" (click)="dislike(post.uuid)">
+        <ion-icon name="heart" class="liked shrink-and-bounce"></ion-icon>
+        <ion-label>{{post.likes_count}}</ion-label>
+    </ion-chip>
+    <ion-chip slot="start" *ngIf="!post.is_liked" (click)="like(post.uuid)">
+        <ion-icon name="heart-outline"></ion-icon>
+        <ion-label>{{post.likes_count}}</ion-label>
+    </ion-chip>
     <ion-chip slot="start" (click)="goTo(post.uuid)">
       <ion-icon name="chatbox-ellipses-outline"></ion-icon>
       <ion-label>{{post.comment_count}}</ion-label>

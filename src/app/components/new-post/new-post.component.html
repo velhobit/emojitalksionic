@@ -2,11 +2,12 @@
   <ion-grid class="ion-padding">
     <ion-row>
       <ion-col>
-        <h1 class="ion-no-margin"><span [ngClass]="{'shrink-and-bounce': changeEmoji}">{{emoji}}</span> {{forum?.name}}</h1>
+        <h1 class="ion-no-margin" (click)="openSelectForum()"><span [ngClass]="{'shrink-and-bounce': changeEmoji}">{{emoji}}</span> {{forumObj?.name}}</h1>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="ion-no-padding ion-no-margin">
+        <ion-input class="ion-margin-bottom" placeholder="Título" [(ngModel)]="postTitle" mode="md" fill="outline"></ion-input>
         <ion-segment [(ngModel)]="selectedEditor" value="default" mode="ios">
           <ion-segment-button value="default" (click)="convertMarkdownToHtml()">
             <ion-label>Editor Visual</ion-label>
@@ -26,7 +27,7 @@
         </div>
         <ion-item lines="none" class="ion-no-padding ion-no-margin">
           <ion-button fill="clear" size="medium" color="danger" mode="md" slot="start" (click)="cancel()">Cancelar</ion-button>
-          <ion-button mode="md" fill="outline" size="medium" slot="end" (click)="createPost()">Publicar</ion-button>
+          <ion-button mode="md" fill="outline" size="medium" slot="end" (click)="createPost()" [disabled]="postTitle.length == 0">Publicar</ion-button>
         </ion-item>
       </ion-col>
     </ion-row>
