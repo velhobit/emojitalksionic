@@ -14,6 +14,7 @@ This README outlines the steps necessary to get the front-end of the Askabit pro
 -	Responsive Design: The application is optimized for both web and mobile platforms, ensuring a smooth user experience across devices.
 
 ## Next Features
+- i18n
 - Follow and Unfollow
 - Edit Posts
 - Create Account Page
@@ -24,6 +25,12 @@ This README outlines the steps necessary to get the front-end of the Askabit pro
 ## Video Initial Presentation
 
 [![Click here to watch the video](https://velhobit.com.br/wp-content/uploads/2024/10/Screenshot-2024-10-24-at-3.40.05 PM.png)](https://velhobit.com.br/wp-content/uploads/2024/10/1728910302368.mp4)
+
+## Backend Project
+
+For the backend implementation of the project, please visit our GitHub repository:
+
+[View the Ruby Backend Project](https://github.com/velhobit/emojitalksrails)
 
 ## Project Overview
 
