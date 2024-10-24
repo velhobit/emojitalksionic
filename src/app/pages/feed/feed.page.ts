@@ -24,7 +24,7 @@ export class FeedPage implements OnInit {
   }
 
   loadFeed() {
-    this.postService.getPosts().subscribe((data) => {
+    this.postService.getHot().subscribe((data) => {
       this.feed = data;
     });
   }

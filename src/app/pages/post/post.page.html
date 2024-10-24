@@ -45,12 +45,12 @@
                </ion-label>
             </ion-item>
           </ion-list>
-          <ion-card-content  *ngIf="isAuthenticated">
-            <ion-textarea mode="md" fill="outline" placeholder="Comentar" [(ngModel)]="comment"></ion-textarea>
+          <ion-card-content *ngIf="isAuthenticated">
+            <ion-textarea mode="md" fill="outline" class="ion-margin-top" placeholder="Comentar" [(ngModel)]="comment"></ion-textarea>
           </ion-card-content>
-          <ion-item lines="none"  *ngIf="isAuthenticated">
-            <ion-button slot="end" (click)="createComment()" [disabled]="comment.length == 0">
-              <ion-icon name="send" slot="start"></ion-icon> Enviar</ion-button>
+          <ion-item lines="none" *ngIf="isAuthenticated">
+            <ion-button class="comment-button ion-padding-start" slot="end" (click)="createComment()" [disabled]="comment.length == 0">
+              <ion-icon name="send" slot="start"></ion-icon> <span *ngIf="comment.length">Enviar Comentário</span><span *ngIf="comment.length == 0">Digite algo para Comentar</span></ion-button>
           </ion-item>
           <ion-button expand="full" size="medium"  *ngIf="!isAuthenticated" (click)="openLogin()">
           Faça login para comentar</ion-button>

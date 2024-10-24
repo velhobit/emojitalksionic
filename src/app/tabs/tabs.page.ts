@@ -1,7 +1,7 @@
 import { Component, EnvironmentInjector, inject } from '@angular/core';
 import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonModal, ModalController, IonHeader, IonToolbar, IonTitle } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { disc, add, glasses, cog, compass, personCircle, logIn } from 'ionicons/icons';
+import { add, glasses, cog, compass, personCircle, logIn, flame } from 'ionicons/icons';
 import { LoginPage } from '../pages/login/login.page';
 import { AuthService } from '../services/auth.service';
 import { NewPostComponent } from '../components/new-post/new-post.component';
@@ -20,7 +20,7 @@ export class TabsPage {
   isAuthenticated: boolean = false;
 
   constructor(private modalController: ModalController, private authService: AuthService, private router:Router) {
-    addIcons({ compass, glasses, cog, add, disc, personCircle, logIn});
+    addIcons({ compass, glasses, cog, add, flame, personCircle, logIn});
   }
 
   async ngOnInit() {

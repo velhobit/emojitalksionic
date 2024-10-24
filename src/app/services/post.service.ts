@@ -39,6 +39,12 @@ export class PostService {
         return this.http.get<Post[]>(`${this.apiUrl}?page=${page}&limit=${limit}`, { headers });
     }
 
+    // Get posts with pagination
+    getHot(page: number = 1, limit: number = 10): Observable<Post[]> {
+        const headers = localStorage.getItem('token') ? this.getAuthHeaders() : undefined;
+        return this.http.get<Post[]>(`${this.apiUrl}/hot?page=${page}&limit=${limit}`, { headers });
+    }
+
     // Get a single post by ID
     getPost(id: string): Observable<Post> {
         return this.http.get<Post>(`${this.apiUrl}/${id}`);

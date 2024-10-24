@@ -19,3 +19,11 @@
     font-size: .8rem;
   }
 }
+
+.comment-button{
+    --box-shadow: none;
+    &[disabled]{
+        --color:  var(--ion-color-dark-shade);
+        --background: var(--ion-color-light-shade);
+    }
+}
